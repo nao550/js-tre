@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang=ja>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>タイピング測定</title>
+    <link href="./style.css" media="all" rel="stylesheet" type="text/css" />
+
+    <script>
+    
+document.onkeydown = typeNum;  // キーを押したときに typeNum(); を呼び出し
+    
+//文字を格納する配列
+var moji = new Array("Ａ","Ｂ","Ｃ","Ｄ","Ｅ","Ｆ","Ｇ","Ｈ","Ｉ",
+                     "Ｊ","Ｋ","Ｌ","Ｍ","Ｎ","Ｏ","Ｐ","Ｑ","Ｒ",
+                     "Ｓ","Ｔ","Ｕ","Ｖ","Ｗ","Ｘ","Ｙ","Ｚ");
+
+//キーコードを格納する配列
+var kcode = new Array(65,66,67,68,69,70,71,72,73,
+		      74,75,76,77,78,79,80,81,82,
+                      83,84,85,86,87,88,89,90);
+
+//0〜25までの乱数を格納する配列
+var rnd = new Array();
+
+//グローバル変数群
+var mondai = "";       //問題の文字列を格納
+var cnt=0;             //何問目か格納
+var typStart,typEnd;   //開始時と終了時の時刻を格納
+
+function mkRansu() {
+     for( var i = 0 ; i < 10 ; i++ ){
+	rnd[i] = Math.floor( Math.random() * 26);
+    }
+}
+
+function SetType() {
+    // 問題文とカウントを初期化
+    mondai = "";
+    cnd = 0;
+
+    // 乱数の作成
+    mkRansu();
+
+    // 問題文の作成 moji 要素をランダムに200文字繋げる
+    for( var i = 0 ; i < 10 ; i++ ){
+	mondai = mondai + moji[ rnd[i] ];
+    }
+
+    // 問題枠に表示する
+    document.getElementById("waku").innerHTML = mondai;
+}
+
+function typeNum(evt){
+
+    var kc; // キーコード格納変数
+
+    if( document.all ){
+	kc = event.keyCode;
+    } else {
+	kc = evt.which;
+    }
+
+    // 入力キーコードと、問題文キーコードを比較
+    if ( kc == kcode[ rnd[cnt] ]){
+	// キーコードが一致
+	if ( cnt == 0 ){
+	    typStart = new Date();
+	}
+
+	cnt++;
+
+	// 全部入力したかの確認
+	if ( cnt < 10 ){
+	    // 問題文の先頭1文字を切り取り
+	    mondai = mondai.substring(1, mondai.Length);
+	    // 問題枠に表示
+	    document.getElementById("waku").innerHTML = mondai;
+	} else {
+	    typEnd = new Date();
+	    var keika = typEnd - typStart;
+	    var sec = Math.floor( keika / 1000 );
+	    var msec = keika % 1000 ;
+	    var fin = "タイピング終了 時間："+sec+"秒"+msec;
+	    document.getElementById("waku").innerHTML = fin;
+	}
+    }
+}
+  </script>
+  </head>
+  <body onload="SetType()" >
+    <div id="waku"></div>
+    <input type="button" value="初期化" onclick="SetType()">
+  </body>
+</html>
