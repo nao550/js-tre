@@ -1,0 +1,22 @@
+<html>
+  <head>
+
+    <script type="text/javascript" language="javascript">
+      function timerbox(){
+        var timeout = document.forms.timerform.timerbox1.value;
+        setTimeout(mes(),timeout);
+      }
+      function mes(){
+        alert("end time.\n");
+      }
+    </script>
+  </head>
+  <body>
+    <form id="timerform">
+      <input type="textbox" id="timerbox1" />
+      <input type="button" value="Run" onclick="timerbox();" />
+    </form>
+  </body>
+</html>
+
+    
