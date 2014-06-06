@@ -1,4 +1,4 @@
-*javasvript ╓ннЩ╫╛
+*javasvript Ц│╝Г╥╢Г©▓
 
-**Timer╔╒╔в╔Й╓нди╡ц
+**TimerЦ┌╒Ц┐≈Ц┐╙Ц│╝Х©╫Е┼═
 
