@@ -1,3 +1,8 @@
+2014-06-06  IKENO Naoki  <nao@kyo-to.net>
+
+	* timer/index.html: Add the javascript Timer Apps.
+	Complete of the timeout by setTimeout.
+
 2014-02-13  IKENO Naoki  <nao@kyo-to.net>
 
 	* README.md: Make github repository
