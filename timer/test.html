@@ -1,0 +1,27 @@
+<html>
+  <head>	
+  </head>
+  <body>
+
+    <select id="select">
+      <option value="">サンプル</option>
+    </select>
+    
+    <script type="text/javascript">
+      var select = document.getElementById('select');
+
+      var selectBox = {
+      'japan' : '日本',
+      'Amerika' : 'アメリカ',
+      'UK' : 'イギリス',
+      };
+
+      for ( var i in selectBox ) {
+        var option = document.createElement('option');
+        option.setAttribute('value', i);
+        option.innerHTML = selectBox[i];
+        select.appendChild(option);
+      }
+    </script>
+  </body>
+</html>
